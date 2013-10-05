@@ -1,0 +1,31 @@
+Package: amritaPackage
+Type: Package
+Title: Quasi-bootstrap association tests
+Author: Amrita Ray <amray@stanford.edu>
+Maintainer: Amrita Ray <amray@stanford.edu>
+Depends:
+    R (>= 2.10.0),
+    kinship2,
+    matrixcalc
+Description: Provides quasi-bootstrap p-values for provided and user-provided
+    tests.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyLoad: yes
+URL: http://stanford.edu/~amray/thepackage/index.html
+Authors@R: c(person(given="Amrita", family="Ray", email="amray@stanford.edu",
+    role=c("aut", "cre")))
+Version: 0.01-1
+Date: 2013-10-04
+Collate:
+    'amritaPackage-package.R'
+    'bootstrap_fn.R'
+    'burden_statistic_fn.R'
+    'C_fn.R'
+    'kernel_fn.R'
+    'kernel_statistic_fn.R'
+    'kinship_fn.R'
+    'mb_statistic_fn.R'
+    'p_hat_fn.R'
+    'r_hat_fn.R'
+    'weight_fn.R'

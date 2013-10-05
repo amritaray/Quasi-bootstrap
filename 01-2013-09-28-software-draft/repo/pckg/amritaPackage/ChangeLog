@@ -1,0 +1,9 @@
+ChangeLog for package amritaPackage
+
+changes in version 0.01-1 (2013-10-04)
+edited:
+  - Ugh, I left browser() inside mb_statistic_fn
+  - I added comments to each function
+  - I added the data file
+  - I added Windows version
+

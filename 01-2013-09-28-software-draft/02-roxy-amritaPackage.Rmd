@@ -1,0 +1,75 @@
+# 02-roxy-amritaPackage.Rmd
+
+trunk/projects/amrita/08-gail-rethinking/08-clean-up-first/02-getting-started-roxy/02-roxy-amritaPackage.Rmd
+
+```{r}
+library(roxyPackage)
+pck.description = data.frame(
+  Package = "amritaPackage",
+  Type = "Package",
+  Title = "Quasi-bootstrap association tests",
+  Author = "Amrita Ray <amray@stanford.edu>",
+  AuthorsR = "c(person(given=\"Amrita\", family=\"Ray\",
+   email=\"amray@stanford.edu\", role=c(\"aut\", \"cre\")))",
+  Maintainer = "Amrita Ray <amray@stanford.edu>",
+  Depends = "R (>= 2.10.0), kinship2, matrixcalc",
+  Description = "Provides quasi-bootstrap p-values for provided and user-provided tests.",
+  License = "GPL (>= 3)",
+  Encoding = "UTF-8",
+  LazyLoad = "yes",
+  URL = "http://stanford.edu/~amray/thepackage/index.html",
+  stringsAsFactors = FALSE)
+```
+
+```{r}
+roxy.package(
+  pck.source.dir = "amritaPackage",
+  pck.version = "0.01-1",
+  R.libs = "~/R",
+  repo.root = "repo",
+  pck.description = pck.description,
+  actions = c(
+    "roxy",
+    "cite",
+    "doc",
+    "html",
+    "license",
+    "log",
+    "win",
+    "macosx",
+    "package"),
+  ChangeLog = list(
+    edited = c("I added Windows version"))
+  )
+```
+
+```{r}
+library(amritaPackage, lib.loc = "~/R")
+ls(2)
+data(example_data)
+# ?bootstrap_fn
+# example(bootstrap_fn)
+# ?burden_statistic_fn
+# example(burden_statistic_fn)
+N_bootstrap_reps = 1000
+ped_object
+geno_object
+map_object
+genotype = geno_object[, 2:ncol(geno_object)]
+test_statistic_fns = list(
+      burden = burden_statistic_fn,
+      kernel = kernel_statistic_fn,
+      mb = mb_statistic_fn)
+  
+bbb = bootstrap_fn(N_bootstrap_reps, genotype, ped_object, test_statistic_fns, map_object)
+names(bbb)
+bbb$observed
+bbb$p_value
+par(mfrow = c(3, 1))
+invisible(lapply(names(bbb$bootstrap_reps), function(name){
+  this = bbb$bootstrap_reps[[name]]
+  hist(this, col = "gray", main = name, xlab = "bootstrapped test statistic")
+  }))
+```
+
+

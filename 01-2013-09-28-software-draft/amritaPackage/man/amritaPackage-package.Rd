@@ -9,7 +9,7 @@
 \details{
   \tabular{ll}{ Package: \tab amritaPackage\cr Type: \tab
   Package\cr Version: \tab 0.01-1\cr Date: \tab
-  2013-10-04\cr Depends: \tab R (>= 2.10.0), kinship2,
+  2013-10-07\cr Depends: \tab R (>= 2.10.0), kinship2,
   matrixcalc\cr Encoding: \tab UTF-8\cr License: \tab GPL
   (>= 3)\cr LazyLoad: \tab yes\cr URL: \tab
   http://stanford.edu/~amray/thepackage/index.html\cr }

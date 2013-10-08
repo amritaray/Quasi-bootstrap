@@ -10,6 +10,9 @@
 #' @param map_object is the user input mapfile of the markers 
 #'          
 #' @author Ray and Gong
+#' @references Schaid
+#' @docType methods
+#' @rdname qb
 #' @export
 #' 
 #' @examples

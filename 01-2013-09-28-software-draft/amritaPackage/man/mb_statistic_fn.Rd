@@ -1,7 +1,6 @@
 \name{mb_statistic_fn}
 \alias{mb_statistic_fn}
-\title{Madsen-Browning statistic
-This function returns the multi-locus burden statistic}
+\title{Madsen-Browning statistic}
 \usage{
   mb_statistic_fn(genotype, ped_object, Psi, p_hat, r_hat,
     map_object)
@@ -24,8 +23,7 @@ This function returns the multi-locus burden statistic}
   markers}
 }
 \description{
-  Madsen-Browning statistic This function returns the
-  multi-locus burden statistic
+  This function returns the multi-locus burden statistic
 }
 \examples{
 data(example_data)

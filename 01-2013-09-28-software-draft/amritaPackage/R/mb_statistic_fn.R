@@ -10,10 +10,15 @@
 #' @param map_object is the user input mapfile of the markers
 #' 
 #' @author  Ray and Gail
+#' @references Madsen and Browning (2009) "A Groupwise Association Test for Rare Mutations 
+#' Using a Weighted Sum Statistic" PLoS Genet 5(2): e1000384 
+#' @docType methods
+#' @rdname qb
+#' 
 #' @examples
 #'  data(example_data)
 #' genotype = geno_object[,2:ncol(geno_object)]
-#' Psi = 2*kinship(ped_object)
+#' Psi = 2*kinship_fn(ped_object)
 #' p_hat = p_hat_fn(genotype)
 #' r_hat=r_hat_fn(genotype)
 #' print(mb_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
@@ -40,6 +45,8 @@ mb_statistic_fn = function(
   term_two = N_cases * (NNN + 1) / 2
   term_deno = N_cases * N_control * (NNN + 1)/12
   
-  (term_one - term_two)/sqrt(term_deno)
+  statistic = (term_one - term_two)/sqrt(term_deno)
+  attributes(statistic) = NULL
+  statistic
 
 }

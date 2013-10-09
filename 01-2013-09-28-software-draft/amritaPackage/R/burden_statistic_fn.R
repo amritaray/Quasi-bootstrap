@@ -31,7 +31,10 @@ burden_statistic_fn = function(
   
   xi = weight %*% t(genotype)
   
-  burden = ( uuu %*% t(xi) )^2 / ( cs * t(uuu) %*% Psi %*% uuu )
-  attributes(burden) = NULL
-  burden
+  chi_square = ( uuu %*% t(xi) )^2 / ( cs * t(uuu) %*% Psi %*% uuu )
+  attributes(chi_square) = NULL
+  #burden
+  list(
+    statistic = chi_square, 
+    degrees_freedom = 1)
 }

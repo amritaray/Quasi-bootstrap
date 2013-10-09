@@ -41,7 +41,7 @@ bootstrap_fn = function(
   r_hat = r_hat_fn(genotype)
   observed = data.frame(t(sapply(names(test_statistic_fns), function(name){
     test_statistic_fn = test_statistic_fns[[name]]
-    test_statistic_fn(genotype, ped_object, Psi, p_hat, r_hat, ...)
+    test_statistic_fn(genotype, ped_object, Psi, p_hat, r_hat, ...)$statistic
   })))
   
   LLL = t(chol(Psi))
@@ -58,7 +58,7 @@ bootstrap_fn = function(
       genotype_b = LLL %*% A_b
       data.frame(t(sapply(names(test_statistic_fns), function(name){
         test_statistic_fn = test_statistic_fns[[name]]
-        test_statistic_fn(genotype_b, ped_object, Psi, p_hat, r_hat, ...)
+        test_statistic_fn(genotype_b, ped_object, Psi, p_hat, r_hat, ...)$statistic
       })))   
    }))
   p_value = data.frame(t(mapply(function(ooo, bbb){ 

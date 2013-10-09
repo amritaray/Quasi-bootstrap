@@ -28,7 +28,7 @@
 \examples{
 data(example_data)
 genotype = geno_object[,2:ncol(geno_object)]
-Psi = 2*kinship(ped_object)
+Psi = 2*kinship_fn(ped_object)
 p_hat = p_hat_fn(genotype)
 r_hat=r_hat_fn(genotype)
 print(mb_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))

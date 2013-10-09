@@ -2,6 +2,6 @@ Package: amritaPackage
 Version: 0.01-1
 Depends: R (>= 2.10.0), kinship2, matrixcalc
 License: GPL (>= 3)
-MD5sum: defaafa2e745547cf79c657d043e9e09
+MD5sum: 5b4097375fec6d6a2d230dc4e178b37d
 NeedsCompilation: no
 

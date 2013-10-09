@@ -1,7 +1,6 @@
 export(bootstrap_fn)
 export(burden_statistic_fn)
 export(C_fn)
-export(kernel_fn)
 export(kernel_statistic_fn)
 export(kinship_fn)
 export(mb_statistic_fn)

@@ -5,7 +5,11 @@
   kinship_fn(ped_object)
 }
 \arguments{
-  \item{ped_object}{is the user input pedigree file.}
+  \item{ped_object}{is the user input pedigree file. This
+  file has individuals as rows, and 6 columns: family id,
+  individual id, father id, mother id, gender, and
+  affection status (0 = unaffected, 1 = affected, NA =
+  missing).}
 }
 \description{
   This function returns a matrix of the kinship

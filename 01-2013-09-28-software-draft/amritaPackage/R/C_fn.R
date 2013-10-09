@@ -1,9 +1,12 @@
 #' Denominator term for two default statistics: Multi-locus Burden and Linear Kernel.
 #' 
-#' This function returns the value of c_s term that is part of the denominator for 
+#' This function returns the value of $c_s$ term that is part of the denominator for 
 #' Burden and Kernel statistics. 
 #' 
-#' @param map_object is the user input map file of all the markers
+#' @param map_object is the user input map file of all the markers where markers are rows 
+#' and 4 columns: marker name, chromosome, base pair, user-specified weights. Internal 
+#' weights as function of estimated minor alelle frequency will be used if user has not 
+#' specified weights. 
 #' @param p_hat is the estimated minor allele frequency per marker
 #' @param r_hat is the estimated inter-marker correlation coefficient matrix
 #' 

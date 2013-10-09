@@ -1,7 +1,6 @@
 \name{kernel_statistic_fn}
 \alias{kernel_statistic_fn}
-\title{Multi-locus Burden statistic
- This function returns the multi-locus burden statistic}
+\title{Kernel statistic}
 \usage{
   kernel_statistic_fn(genotype, ped_object, Psi, p_hat,
     r_hat, map_object)
@@ -24,16 +23,16 @@
   markers}
 }
 \description{
-  Multi-locus Burden statistic This function returns the
-  multi-locus burden statistic
+  Linear Kernel statistic This function returns the
+  linear kernel statistic
 }
 \examples{
 data(example_data)
 genotype = geno_object[,2:ncol(geno_object)]
-Psi = 2*kinship(ped_object)
+Psi = 2*kinship_fn(ped_object)
 p_hat = p_hat_fn(genotype)
 r_hat=r_hat_fn(genotype)
-print(burden_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+print(kernel_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
 }
 \author{
   Amrita and Gail (emails)

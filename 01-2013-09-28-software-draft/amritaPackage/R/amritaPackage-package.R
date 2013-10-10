@@ -4,7 +4,7 @@
 #' Package: \tab amritaPackage\cr
 #' Type: \tab Package\cr
 #' Version: \tab 0.01-1\cr
-#' Date: \tab 2013-10-08\cr
+#' Date: \tab 2013-10-09\cr
 #' Depends: \tab R (>= 2.10.0), kinship2, matrixcalc\cr
 #' Encoding: \tab UTF-8\cr
 #' License: \tab GPL (>= 3)\cr

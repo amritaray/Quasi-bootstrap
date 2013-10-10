@@ -13,7 +13,6 @@
 #' @references Madsen and Browning (2009) "A Groupwise Association Test for Rare Mutations 
 #' Using a Weighted Sum Statistic" PLoS Genet 5(2): e1000384 
 #' @docType methods
-#' @rdname qb
 #' 
 #' @examples
 #'  data(example_data)
@@ -47,6 +46,6 @@ mb_statistic_fn = function(
   
   statistic = (term_one - term_two)/sqrt(term_deno)
   attributes(statistic) = NULL
-  statistic
+  list(statistic = statistic)
 
 }

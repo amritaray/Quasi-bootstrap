@@ -1,3 +1,4 @@
+\docType{methods}
 \name{bootstrap_fn}
 \alias{bootstrap_fn}
 \title{Quasi-Bootstrap}

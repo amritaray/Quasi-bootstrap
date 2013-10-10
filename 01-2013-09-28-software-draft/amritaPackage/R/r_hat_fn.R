@@ -5,6 +5,11 @@
 #' @param Genotype is the user input genotype matrix.
 #' @param epsilon is a small quantity that is added or or subtracted from genotype depending on the number of minor alleles per marker. This adjustment #'is done so the genotypic variance at a marker is non-zero. 
 #' 
+#' @docType methods
+#' @examples
+#'  data(example_data)
+#'  genotype=geno_object[,2:ncol(geno_object)] 
+#'  print(r_hat_fn(genotype,epsilon))
 #' @export
 
 r_hat_fn = function(genotype, epsilon = 0.0001){

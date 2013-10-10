@@ -1,3 +1,4 @@
+\docType{methods}
 \name{weight_fn}
 \alias{weight_fn}
 \title{Weights}

@@ -1,16 +1,18 @@
+\docType{methods}
 \name{p_hat_fn}
 \alias{p_hat_fn}
-\title{MAF}
+\title{Minor allele frequency estimate}
 \usage{
   p_hat_fn(genotype, epsilon = 1e-04)
 }
 \arguments{
   \item{Genotype}{is the user input genotype data with rows
-  as individuals and columns as markers.}
+  as individuals and columns as markers with number of
+  minor alleles.}
 
   \item{epsilon}{is a small quantity, if the estimate is
   less or equal to 0 the function returns epsilon; if the
-  estimate is greater or equal to 1 the function #'returns
+  estimate is greater or equal to 1 the function returns
   1-epsilon.}
 }
 \description{

@@ -19,6 +19,7 @@
 #'          
 #' @author Ray and Gong
 #' @export
+#' @docType methods
 #' @examples
 #'  data(example_data)
 #'  genotype = geno_object[,2:ncol(geno_object)]

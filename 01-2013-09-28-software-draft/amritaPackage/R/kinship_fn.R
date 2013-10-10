@@ -5,7 +5,8 @@
 #' @param ped_object is the user input pedigree file. This file has individuals as rows, 
 #' and 6 columns: family id, individual id, father id, mother id, gender, and affection 
 #' status (0 = unaffected, 1 = affected, NA = missing).
-#' 
+#'
+#' @docType methods
 #' @examples
 #'  data(example_data)
 #'  kinship_object=kinship_fn(ped_object)

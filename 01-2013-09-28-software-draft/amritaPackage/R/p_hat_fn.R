@@ -9,7 +9,6 @@
 #' returns 1-epsilon.
 #' 
 #' @docType methods
-#' @rdname qb
 #' @examples
 #'  data(example_data)
 #'  genotype=geno_object[,2:ncol(geno_object)] 

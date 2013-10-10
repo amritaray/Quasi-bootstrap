@@ -17,7 +17,6 @@
 #' @author Ray and Gong
 #' @references Schaid (2013)- Ask Alice
 #' @docType methods
-#' @rdname qb
 #' @export
 #' 
 #' @examples

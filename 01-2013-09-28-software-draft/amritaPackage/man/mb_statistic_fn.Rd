@@ -1,3 +1,4 @@
+\docType{methods}
 \name{mb_statistic_fn}
 \alias{mb_statistic_fn}
 \title{Madsen-Browning statistic}
@@ -35,5 +36,10 @@ print(mb_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
 }
 \author{
   Ray and Gail
+}
+\references{
+  Madsen and Browning (2009) "A Groupwise Association Test
+  for Rare Mutations Using a Weighted Sum Statistic" PLoS
+  Genet 5(2): e1000384
 }
 

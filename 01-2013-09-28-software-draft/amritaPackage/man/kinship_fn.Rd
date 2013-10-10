@@ -1,3 +1,4 @@
+\docType{methods}
 \name{kinship_fn}
 \alias{kinship_fn}
 \title{Kinship matrix}

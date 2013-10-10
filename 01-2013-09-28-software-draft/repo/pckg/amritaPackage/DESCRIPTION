@@ -12,4 +12,4 @@ URL: http://stanford.edu/~amray/thepackage/index.html
 Authors@R: c(person(given="Amrita", family="Ray", email="amray@stanford.edu", role=c("aut",
           "cre")))
 Version: 0.01-1
-Date: 2013-10-08
+Date: 2013-10-09

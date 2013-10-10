@@ -12,7 +12,6 @@
 #' 
 #' @author Ray and Gong
 #' @docType methods
-#' @rdname qb
 #' @export
 #' @examples
 #' data(example_data)

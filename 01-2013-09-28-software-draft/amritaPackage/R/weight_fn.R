@@ -9,6 +9,7 @@
 #' frequency will be used if user does not specify weights.
 #' @param p_hat Estimate of minor allele frequency from the input genotype file.    
 #' 
+#' @docType methods
 #' @examples
 #'  data(example_data)
 #' genotype = geno_object[,2:ncol(geno_object)]

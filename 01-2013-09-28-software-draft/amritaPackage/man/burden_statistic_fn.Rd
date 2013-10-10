@@ -1,3 +1,4 @@
+\docType{methods}
 \name{burden_statistic_fn}
 \alias{burden_statistic_fn}
 \title{Multi-locus Burden statistic}

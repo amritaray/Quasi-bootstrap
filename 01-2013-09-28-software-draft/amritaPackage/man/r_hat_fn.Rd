@@ -1,3 +1,4 @@
+\docType{methods}
 \name{r_hat_fn}
 \alias{r_hat_fn}
 \title{Marker correlation}
@@ -15,5 +16,10 @@
 \description{
   This function returns estimate of inter-marker
   correlation matrix.
+}
+\examples{
+data(example_data)
+ genotype=geno_object[,2:ncol(geno_object)]
+ print(r_hat_fn(genotype,epsilon))
 }
 

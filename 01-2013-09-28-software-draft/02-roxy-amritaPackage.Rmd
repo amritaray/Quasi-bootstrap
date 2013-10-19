@@ -59,7 +59,8 @@ genotype = geno_object[, 2:ncol(geno_object)]
 test_statistic_fns = list(
       burden = burden_statistic_fn,
       kernel = kernel_statistic_fn,
-      mb = mb_statistic_fn)
+      mb = mb_statistic_fn,
+      quadkernel = quadratic_kernel_statistic_fn)
   
 bbb = bootstrap_fn(N_bootstrap_reps, genotype, ped_object, test_statistic_fns, map_object)
 names(bbb)

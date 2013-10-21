@@ -4,12 +4,13 @@ Title: Quasi-bootstrap association tests
 Author: Amrita Ray <amray@stanford.edu>
 Maintainer: Amrita Ray <amray@stanford.edu>
 Depends: R (>= 2.10.0), kinship2, matrixcalc
-Description: Provides quasi-bootstrap p-values for provided and user-provided tests.
+Description: Provides quasi-bootstrap p-values for provided and
+       user-provided tests.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyLoad: yes
 URL: http://stanford.edu/~amray/thepackage/index.html
-Authors@R: c(person(given="Amrita", family="Ray", email="amray@stanford.edu", role=c("aut",
-          "cre")))
+Authors@R: c(person(given="Amrita", family="Ray",
+       email="amray@stanford.edu", role=c("aut", "cre")))
 Version: 0.01-1
 Date: 2013-10-19

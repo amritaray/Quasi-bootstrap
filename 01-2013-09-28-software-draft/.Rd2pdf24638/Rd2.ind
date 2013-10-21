@@ -1,0 +1,46 @@
+\begin{theindex}
+
+  \item $*$Topic{\relax \fontsize  {12}{14}\selectfont  \ \textbf  {package}}
+    \subitem \texttt  {amritaPackage-package}, \hyperpage{2}
+
+  \indexspace
+
+  \item \texttt  {amritaPackage} \textit  {(\texttt  {amritaPackage-package})}, 
+		\hyperpage{2}
+  \item \texttt  {amritaPackage-package}, \hyperpage{2}
+
+  \indexspace
+
+  \item \texttt  {bootstrap\_fn}, \hyperpage{2}
+  \item \texttt  {burden\_statistic\_fn}, \hyperpage{3}
+
+  \indexspace
+
+  \item \texttt  {C\_fn}, \hyperpage{4}
+
+  \indexspace
+
+  \item \texttt  {kernel\_statistic\_fn}, \hyperpage{5}
+  \item \texttt  {kinship\_fn}, \hyperpage{6}
+
+  \indexspace
+
+  \item \texttt  {mb\_statistic\_fn}, \hyperpage{6}
+
+  \indexspace
+
+  \item \texttt  {p\_hat\_fn}, \hyperpage{7}
+
+  \indexspace
+
+  \item \texttt  {quadratic\_kernel\_statistic\_fn}, \hyperpage{7}
+
+  \indexspace
+
+  \item \texttt  {r\_hat\_fn}, \hyperpage{8}
+
+  \indexspace
+
+  \item \texttt  {weight\_fn}, \hyperpage{9}
+
+\end{theindex}

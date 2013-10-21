@@ -1,8 +1,8 @@
 #' Quadratic Kernel statistic
 #'
-#' Computes linear kernel statistic and degrees of freedom
+#' Computes quadratic kernel statistic 
 #' 
-#' This function returns the linear Kernel statistic (Schaid et al.)
+#' This function returns the quadratic kernel statistic 
 #' 
 #' @param genotype is the genotype matrix with individuals as 
 #'  rows and columns with marker genotypes as number of minor alleles.
@@ -15,7 +15,7 @@
 #' @param map_object is the user input mapfile of the markers 
 #'          
 #' @author Ray and Gong
-#' @references Schaid (2013)- Ask Alice
+#' @references Ask Alice
 #' @docType methods
 #' @export
 #' 
@@ -25,7 +25,7 @@
 #' Psi = 2*kinship_fn(ped_object)
 #' p_hat = p_hat_fn(genotype)
 #' r_hat=r_hat_fn(genotype)
-#' print(kernel_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+#' print(quadratic_kernel_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
 #' @section Kernel: Linear
 
 quadratic_kernel_statistic_fn = function(
@@ -42,12 +42,12 @@ quadratic_kernel_statistic_fn = function(
   WWW = diag(weight, nrow = MMM, ncol = MMM)
   
   kkk = genotype %*% WWW %*% t(genotype)
-  quadk = matrix(nrow=nrow(kkk),ncol=nrow(kkk),0)
-   for(i in 1:nrow(kkk)){
-         for(j in 1:nrow(kkk)){
-               quadk[i,j]=(1+kkk[i,j])^2
-               }
-         }
+ 
+  fnforquadk = function(a){ 
+     return((1+a)^2)
+     }
+  
+  quadk = apply(kkk,c(1,2),FUN = fnforquadk)
   
   quad_kernel = t(uuu)%*%quadk%*%uuu
   

@@ -1,0 +1,548 @@
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `amritaPackage'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{utf8}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Quasi-bootstrap association tests}
+\item[Author]\AsIs{Amrita Ray }\email{amray@stanford.edu}\AsIs{}
+\item[Maintainer]\AsIs{Amrita Ray }\email{amray@stanford.edu}\AsIs{}
+\item[Depends]\AsIs{
+R (>= 2.10.0),
+kinship2,
+matrixcalc}
+\item[Description]\AsIs{Provides quasi-bootstrap p-values for provided and
+user-provided tests.}
+\item[License]\AsIs{GPL (>= 3)}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyLoad]\AsIs{yes}
+\item[URL]\AsIs{}\url{http://stanford.edu/~amray/thepackage/index.html}\AsIs{}
+\item[Version]\AsIs{0.01-1}
+\item[Date]\AsIs{2013-10-19}
+\item[Collate]\AsIs{
+'amritaPackage-package.R'
+'bootstrap\_fn.R'
+'burden\_statistic\_fn.R'
+'C\_fn.R'
+'kernel\_statistic\_fn.R'
+'kinship\_fn.R'
+'mb\_statistic\_fn.R'
+'p\_hat\_fn.R'
+'quadratic\_kernel\_statistic\_fn.R'
+'r\_hat\_fn.R'
+'weight\_fn.R'}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{amritaPackage-package}{The amritaPackage Package}{amritaPackage.Rdash.package}
+\aliasA{amritaPackage}{amritaPackage-package}{amritaPackage}
+\keyword{package}{amritaPackage-package}
+%
+\begin{Description}\relax
+Quasi-bootstrap association tests.
+\end{Description}
+%
+\begin{Details}\relax
+
+\Tabular{ll}{ Package: & amritaPackage\\{} Type: &
+Package\\{} Version: & 0.01-1\\{} Date: &
+2013-10-19\\{} Depends: & R (>= 2.10.0), kinship2,
+matrixcalc\\{} Encoding: & UTF-8\\{} License: & GPL
+(>= 3)\\{} LazyLoad: & yes\\{} URL: &
+http://stanford.edu/\textasciitilde{}amray/thepackage/index.html\\{} }
+
+Provides quasi-bootstrap p-values for provided and
+user-provided tests.
+\end{Details}
+%
+\begin{Author}\relax
+Amrita Ray \email{amray@stanford.edu}
+\end{Author}
+\inputencoding{utf8}
+\HeaderA{bootstrap\_fn}{Quasi-Bootstrap}{bootstrap.Rul.fn}
+%
+\begin{Description}\relax
+Compute quasi-bootstrap pvalues for association
+statistics
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  bootstrap_fn(N_bootstrap_reps, genotype, ped_object,
+    test_statistic_fns, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{N\_bootstrap\_reps}] is the number of bootstrap
+replications
+
+\item[\code{genotype}] is the genotype matrix
+
+\item[\code{ped\_object}] is the user input pedigree data
+
+\item[\code{test\_statistic\_fns}] is a list of test statistics.
+This includes the default list of three statistics
+(Burden, Kernel and Madsen-Browning), and any user
+specified statistic.
+
+\item[\code{map\_object}] is the user input mapfile of the
+markers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function returns a list of the observed statistics,
+number of bootstrap replications and the quasi-bootstrap
+pvalues. The quasi-bootstrap method can be applied to any
+genetic data with design (case control, pedigree) to
+compute association statistics and corresponding pvalues.
+The idea is to bootstrap from the decorrelated genotype
+matrix to circumvent the problem that subjects' genotypes
+at any marker may be correlated.
+\end{Details}
+%
+\begin{Author}\relax
+Ray and Gong
+\end{Author}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype = geno_object[,2:ncol(geno_object)]
+ test_statistic_fns = list(
+     burden = burden_statistic_fn,
+     kernel = kernel_statistic_fn,
+     mb = mb_statistic_fn)
+ print(bootstrap_fn(100, genotype, ped_object, test_statistic_fns, map_object))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{burden\_statistic\_fn}{Multi-locus Burden statistic}{burden.Rul.statistic.Rul.fn}
+%
+\begin{Description}\relax
+This function returns the multi-locus burden statistic
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  burden_statistic_fn(genotype, ped_object, Psi, p_hat,
+    r_hat, map_object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{genotype}] is the genotype matrix
+
+\item[\code{ped\_object}] is the user input pedigree data
+
+\item[\code{Psi}] is the matrix of twice kinship coefficients
+between a pair of individuals
+
+\item[\code{p\_hat}] is the vector of estimated minor allele
+frequency per marker
+
+\item[\code{r\_hat}] is the matrix of estimated inter-marker
+correlation coefficients
+
+\item[\code{map\_object}] is the user input mapfile of the
+markers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Section}{Burden}
+pvalue
+\end{Section}
+%
+\begin{Author}\relax
+Ray and Gong
+\end{Author}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype = geno_object[,2:ncol(geno_object)]
+Psi = 2*kinship_fn(ped_object)
+p_hat = p_hat_fn(genotype)
+r_hat=r_hat_fn(genotype)
+print(burden_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{C\_fn}{Denominator term for two default statistics: Multi-locus Burden and Linear Kernel.}{C.Rul.fn}
+%
+\begin{Description}\relax
+This function returns the value of \$c\_s\$ term that is
+part of the denominator for Burden and Kernel statistics.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  C_fn(map_object, p_hat, r_hat)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{map\_object}] is the user input map file of all the
+markers where markers are rows and 4 columns: marker
+name, chromosome, base pair, user-specified weights.
+Internal weights as function of estimated minor alelle
+frequency will be used if user has not specified
+weights.
+
+\item[\code{p\_hat}] is the estimated minor allele frequency per
+marker
+
+\item[\code{r\_hat}] is the estimated inter-marker correlation
+coefficient matrix
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+Ray and Gong
+\end{Author}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype = geno_object[,2:ncol(geno_object)]
+ p_hat = p_hat_fn(genotype)
+r_hat=r_hat_fn(genotype)
+print(C_fn(map_object,p_hat,r_hat))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{kernel\_statistic\_fn}{Linear Kernel statistic}{kernel.Rul.statistic.Rul.fn}
+%
+\begin{Description}\relax
+Computes linear kernel statistic and degrees of freedom
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  kernel_statistic_fn(genotype, ped_object, Psi, p_hat,
+    r_hat, map_object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{genotype}] is the genotype matrix with individuals
+as rows and columns with marker genotypes as number of
+minor alleles.
+
+\item[\code{ped\_object}] is the user input pedigree data, where
+rows are individuals, and 6 columns as pedigree id,
+individual id, father id, mother id, gender, and
+affection status
+
+\item[\code{Psi}] is the matrix of twice kinship coefficients
+between a pair of individuals
+
+\item[\code{p\_hat}] is the vector of estimated minor allele
+frequency per marker
+
+\item[\code{r\_hat}] is the matrix of estimated inter-marker
+correlation coefficients
+
+\item[\code{map\_object}] is the user input mapfile of the
+markers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function returns the linear Kernel statistic (Schaid
+et al.)
+\end{Details}
+%
+\begin{Section}{Kernel}
+Linear
+\end{Section}
+%
+\begin{Author}\relax
+Ray and Gong
+\end{Author}
+%
+\begin{References}\relax
+Schaid (2013)- Ask Alice
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype = geno_object[,2:ncol(geno_object)]
+Psi = 2*kinship_fn(ped_object)
+p_hat = p_hat_fn(genotype)
+r_hat=r_hat_fn(genotype)
+print(kernel_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{kinship\_fn}{Kinship matrix}{kinship.Rul.fn}
+%
+\begin{Description}\relax
+This function returns a matrix of the kinship
+coefficients of a pair of individuals
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  kinship_fn(ped_object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{ped\_object}] is the user input pedigree file. This
+file has individuals as rows, and 6 columns: family id,
+individual id, father id, mother id, gender, and
+affection status (0 = unaffected, 1 = affected, NA =
+missing).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ kinship_object=kinship_fn(ped_object)
+head(kinship_object)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{mb\_statistic\_fn}{Madsen-Browning statistic}{mb.Rul.statistic.Rul.fn}
+%
+\begin{Description}\relax
+This function returns the multi-locus burden statistic
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  mb_statistic_fn(genotype, ped_object, Psi, p_hat, r_hat,
+    map_object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{genotype}] is the genotype matrix
+
+\item[\code{ped\_object}] is the user input pedigree data
+
+\item[\code{Psi}] is the matrix of twice kinship coefficients
+between a pair of individuals
+
+\item[\code{p\_hat}] is the vector of estimated minor allele
+frequency per marker
+
+\item[\code{r\_hat}] is the matrix of estimated inter-marker
+correlation coefficients
+
+\item[\code{map\_object}] is the user input mapfile of the
+markers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+Ray and Gail
+\end{Author}
+%
+\begin{References}\relax
+Madsen and Browning (2009) "A Groupwise Association Test
+for Rare Mutations Using a Weighted Sum Statistic" PLoS
+Genet 5(2): e1000384
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+genotype = geno_object[,2:ncol(geno_object)]
+Psi = 2*kinship_fn(ped_object)
+p_hat = p_hat_fn(genotype)
+r_hat=r_hat_fn(genotype)
+print(mb_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{p\_hat\_fn}{Minor allele frequency estimate}{p.Rul.hat.Rul.fn}
+%
+\begin{Description}\relax
+This function returns the estimate of minor allele
+frequency for each marker.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  p_hat_fn(genotype, epsilon = 1e-04)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{Genotype}] is the user input genotype data with rows
+as individuals and columns as markers with number of
+minor alleles.
+
+\item[\code{epsilon}] is a small quantity, if the estimate is
+less or equal to 0 the function returns epsilon; if the
+estimate is greater or equal to 1 the function returns
+1-epsilon.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype=geno_object[,2:ncol(geno_object)]
+ p_hat_fn(genotype,epsilon)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{quadratic\_kernel\_statistic\_fn}{Quadratic Kernel statistic}{quadratic.Rul.kernel.Rul.statistic.Rul.fn}
+%
+\begin{Description}\relax
+Computes linear kernel statistic and degrees of freedom
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  quadratic_kernel_statistic_fn(genotype, ped_object, Psi,
+    p_hat, r_hat, map_object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{genotype}] is the genotype matrix with individuals
+as rows and columns with marker genotypes as number of
+minor alleles.
+
+\item[\code{ped\_object}] is the user input pedigree data, where
+rows are individuals, and 6 columns as pedigree id,
+individual id, father id, mother id, gender, and
+affection status
+
+\item[\code{Psi}] is the matrix of twice kinship coefficients
+between a pair of individuals
+
+\item[\code{p\_hat}] is the vector of estimated minor allele
+frequency per marker
+
+\item[\code{r\_hat}] is the matrix of estimated inter-marker
+correlation coefficients
+
+\item[\code{map\_object}] is the user input mapfile of the
+markers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function returns the linear Kernel statistic (Schaid
+et al.)
+\end{Details}
+%
+\begin{Section}{Kernel}
+Linear
+\end{Section}
+%
+\begin{Author}\relax
+Ray and Gong
+\end{Author}
+%
+\begin{References}\relax
+Schaid (2013)- Ask Alice
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype = geno_object[,2:ncol(geno_object)]
+Psi = 2*kinship_fn(ped_object)
+p_hat = p_hat_fn(genotype)
+r_hat=r_hat_fn(genotype)
+print(kernel_statistic_fn(genotype,ped_object, Psi, p_hat, r_hat, map_object))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{r\_hat\_fn}{Marker correlation}{r.Rul.hat.Rul.fn}
+%
+\begin{Description}\relax
+This function returns estimate of inter-marker
+correlation matrix.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  r_hat_fn(genotype, epsilon = 1e-04)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{Genotype}] is the user input genotype matrix.
+
+\item[\code{epsilon}] is a small quantity that is added or or
+subtracted from genotype depending on the number of minor
+alleles per marker. This adjustment \#'is done so the
+genotypic variance at a marker is non-zero.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+ genotype=geno_object[,2:ncol(geno_object)]
+ print(r_hat_fn(genotype,epsilon))
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{weight\_fn}{Weights}{weight.Rul.fn}
+%
+\begin{Description}\relax
+This function assigns weights per marker. Weight = user
+specified weight in the map file, else function of
+estimated minor allele frequency
+\$\bsl{}hatp(1-\bsl{}hatp)\textasciicircum{}-0.5\$
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  weight_fn(map_object, p_hat)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{map\_object}] Data frame of marker information that
+user inputs. This file has markers as rows and columns as
+name, chromosome, base pairs, user-specified weights.
+Internal weights as function of sample minor allele
+frequency will be used if user does not specify weights.
+
+\item[\code{p\_hat}] Estimate of minor allele frequency from the
+input genotype file.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+data(example_data)
+genotype = geno_object[,2:ncol(geno_object)]
+p_hat = p_hat_fn(genotype)
+print(weight_fn(map_object, p_hat))
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}
